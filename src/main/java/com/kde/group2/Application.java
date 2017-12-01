@@ -2,15 +2,10 @@ package com.kde.group2;
 
 import java.io.IOException;
 
+import com.hp.hpl.jena.query.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.kde.group2.rdf.RDFFile;
 
@@ -37,8 +32,8 @@ public class Application {
 			throw new RuntimeException("Unable to open file: "+Constants.RDF_FILE_PATH);
 		}
 		
-		Query query = QueryFactory.create(Queries.QUERY);
-		
+		Query query = QueryFactory.create(Queries.HOUSING_TYPE_QUERY);
+
 		// Execute the query and obtain results
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
