@@ -18,17 +18,18 @@ public class Application {
 		
 		SpringApplication.run(Application.class, args);
 		logger.info("Spring application initialized and started.");
+		logger.info("current dir = " + System.getProperty("user.dir"));
 		
-		HousingModel model = new HousingModel();
-
-		model.getHouseholdsAndPersonsByType(AccommodationType.BEDSIT);
-		model.getHouseholdsAndPersonsByCountyAndType(County.CORK, AccommodationType.CARAVAN_MOBILE_HOME);
-		model.getHouseholdsByCountyAndType(County.WICKLOW, AccommodationType.FLAT_APARTMENT);
-		model.getPersonsByCountyAndType(County.WESTMEATH, AccommodationType.NOT_STATED);
-		model.getPersonsByCounty(County.CARLOW);
-		model.getHouseholdsByCounty(County.CLARE);
-		model.getPersonsByType(AccommodationType.ALL);
-		model.getHouseholdsByType(AccommodationType.HOUSE_BUNGALOW);
-		model.getHouseholdsGreaterThanXByType(AccommodationType.HOUSE_BUNGALOW, 50000);
+//		HousingModel model = new HousingModel();
+//
+//		model.getHouseholdsAndPersonsByType(AccommodationType.BEDSIT);
+//		model.getHouseholdsAndPersonsByCountyAndType(County.CORK, AccommodationType.CARAVAN_MOBILE_HOME);
+//		model.getHouseholdsByCountyAndType(County.WICKLOW, AccommodationType.FLAT_APARTMENT);
+//		model.getPersonsByCountyAndType(County.WESTMEATH, AccommodationType.NOT_STATED);
+//		model.getPersonsByCounty(County.CARLOW);
+//		model.getHouseholdsByCounty(County.CLARE);
+//		model.getPersonsByType(AccommodationType.ALL);
+//		model.getHouseholdsByType(AccommodationType.HOUSE_BUNGALOW);
+//		model.getHouseholdsGreaterThanXByType(AccommodationType.HOUSE_BUNGALOW, 50000);
 	}
 }
