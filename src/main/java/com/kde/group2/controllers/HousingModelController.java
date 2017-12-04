@@ -99,4 +99,34 @@ public class HousingModelController {
 		return response;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, path= "/household/bycounty/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> getHouseholdsByCountyAndType(@RequestParam(value = "county", required= true) County cty, 
+			@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
+		
+		logger.info("Request for getHouseholdsByCountyAndType() received for accomodation type: "+acctype);
+		
+		List<HashMap<String, Object>> resultSet = housingModel.getHouseholdsByCountyAndType(cty, acctype);
+		
+		List<ResultsDto> formattedResult = new ArrayList<ResultsDto>();
+		
+		for (HashMap<String, Object> result : resultSet) {
+			Double area = (Double)result.get("area");
+			String countyResource = ""+result.get("countyResource");
+			Integer households = (Integer)result.get("households");
+			List<Coordinate> coordinates = (List<Coordinate>) result.get("coordinates");
+			
+			ResultsDto dto = new ResultsDto();
+			dto.setArea(area);
+			dto.setCountyResource(countyResource);
+			dto.setHouseholds(households);
+			dto.setCoordinates(coordinates);
+			
+			formattedResult.add(dto);
+		}
+		ResponseEntity<String> response = jsonUtils.getJsonForResponse(formattedResult);
+		logger.info("Request for getHouseholdsByCountyAndType() processed successfully.");
+		
+		return response;
+	}
+	
 }
