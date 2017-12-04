@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kde.group2.Coordinate;
 import com.kde.group2.dto.ResultsDto;
 import com.kde.group2.model.HousingModel;
 import com.kde.group2.utils.JsonUtils;
@@ -47,6 +48,7 @@ public class HousingModelController {
 			String countyResource = ""+result.get("countyResource");
 			String county = ""+result.get("county");
 			Integer households = (Integer)result.get("households");
+			List<Coordinate> coordinates = (List<Coordinate>) result.get("coordinates");
 			
 			ResultsDto dto = new ResultsDto();
 			dto.setArea(area);
@@ -54,6 +56,7 @@ public class HousingModelController {
 			dto.setCountyResource(countyResource);
 			dto.setCounty(county);
 			dto.setHouseholds(households);
+			dto.setCoordinates(coordinates);
 			
 			formattedResult.add(dto);
 		}
@@ -62,4 +65,5 @@ public class HousingModelController {
 		
 		return response;
 	}
+	
 }
