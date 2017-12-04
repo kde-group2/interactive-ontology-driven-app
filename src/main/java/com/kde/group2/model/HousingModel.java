@@ -19,16 +19,16 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.kde.group2.Application;
 import com.kde.group2.Coordinate;
+import com.kde.group2.constants.Constants;
+import com.kde.group2.constants.Queries;
 import com.kde.group2.rdf.RDFFile;
+import com.kde.group2.utils.Utils;
 import com.kde.group2.variables.AccommodationType;
 import com.kde.group2.variables.County;
 
-import constants.Constants;
-import constants.Queries;
 
 @Component
 public class HousingModel {
@@ -55,8 +55,8 @@ public class HousingModel {
                     resultMap.put(resultName, solution.getLiteral(resultName).getInt());
                 } else if (resultName.equals("geometry")) {
                     List<Coordinate> coordinates = extractCoordinatedFromPolygonResult(solution.getLiteral("geometry").getString());
-                    double area = calculateAreaFromPolygon(coordinates);
-                    resultMap.put("coordinates", coordinates);
+                    double area = Utils.calculateAreaFromPolygon(coordinates);
+                    //resultMap.put("coordinates", coordinates);
                     resultMap.put("area", area);
                 } else {
                     resultMap.put(resultName, solution.get(resultName));
@@ -67,19 +67,23 @@ public class HousingModel {
         }
 
         // Execute the Query AGAIN so it can print (needs to be removed / improved)
-        QueryExecution qe2 = QueryExecutionFactory.create(query, this.model);
-        ResultSet printableResults = qe2.execSelect();
-        ResultSetFormatter.out(System.out, printableResults, query);
-        qe.close();
+//        QueryExecution qe2 = QueryExecutionFactory.create(query, this.model);
+//        ResultSet printableResults = qe2.execSelect();
+//        ResultSetFormatter.out(System.out, printableResults, query);
+//        qe.close();
+        
+        System.err.println(query);
+        
+        for(HashMap<String, Object> result : resultsList) {
+        		System.out.println(result);
+        }
 
         return resultsList;
     }
 
     public HousingModel() {
-        String executionPath = System.getProperty("user.dir");
-        System.out.println(executionPath);
         try {
-            System.out.println("current dir = " + System.getProperty("user.dir"));
+            System.err.println("current dir = " + System.getProperty("user.dir"));
             RDFFile rdfFile = new RDFFile(Constants.RDF_FILE_PATH, Constants.RDF_MODEL_NAME);
             this.model = rdfFile.getModel();
         } catch (IOException e) {
@@ -102,11 +106,6 @@ public class HousingModel {
         }
 
         return coordinates;
-    }
-
-    private double calculateAreaFromPolygon(List<Coordinate> coordinates) {
-        // TODO: do the area calculation
-        return 0.0;
     }
 
     public List<HashMap<String, Object>> getHouseholdsAndPersonsByType(AccommodationType type) {

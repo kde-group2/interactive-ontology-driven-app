@@ -1,4 +1,4 @@
-package constants;
+package com.kde.group2.constants;
 
 public class Queries {
 	
