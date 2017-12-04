@@ -11,10 +11,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.kde.group2.Coordinate;
 import com.kde.group2.dto.ResultsDto;
 import com.kde.group2.model.HousingModel;
 import com.kde.group2.utils.JsonUtils;
 import com.kde.group2.variables.AccommodationType;
+import com.kde.group2.variables.County;
 
 @CrossOrigin()
 @RestController
@@ -29,13 +31,12 @@ public class HousingModelController {
 	@Autowired
 	JsonUtils jsonUtils;
 	
-	@RequestMapping(method = RequestMethod.GET, path= "/household/persons/byaccomodation/type", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getHouseholdsAndPersonsByAccomodationType(@RequestParam("type") String type) {
+	@RequestMapping(method = RequestMethod.GET, path= "/household/persons/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> getHouseholdsAndPersonsByAccomodationType(@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
 		
-		logger.info("Request for getHouseholdsAndPersonsByType() received for accomodation type: "+type);
+		logger.info("Request for getHouseholdsAndPersonsByType() received for accomodation type: "+acctype);
 		
-		AccommodationType accomodationType = AccommodationType.valueOf(type);
-		List<HashMap<String, Object>> resultSet = housingModel.getHouseholdsAndPersonsByType(accomodationType);
+		List<HashMap<String, Object>> resultSet = housingModel.getHouseholdsAndPersonsByType(acctype);
 		
 		List<ResultsDto> formattedResult = new ArrayList<ResultsDto>();
 		
@@ -45,6 +46,7 @@ public class HousingModelController {
 			String countyResource = ""+result.get("countyResource");
 			String county = ""+result.get("county");
 			Integer households = (Integer)result.get("households");
+			List<Coordinate> coordinates = (List<Coordinate>) result.get("coordinates");
 			
 			ResultsDto dto = new ResultsDto();
 			dto.setArea(area);
@@ -52,6 +54,7 @@ public class HousingModelController {
 			dto.setCountyResource(countyResource);
 			dto.setCounty(county);
 			dto.setHouseholds(households);
+			dto.setCoordinates(coordinates);
 			
 			formattedResult.add(dto);
 		}
@@ -60,4 +63,38 @@ public class HousingModelController {
 		
 		return response;
 	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, path= "/household/persons/bycounty/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> getHouseholdsAndPersonsByCountyAndType(@RequestParam(value = "county", required= true) County cty, 
+			@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
+		
+		logger.info("Request for getHouseholdsAndPersonsByCountyAndType() received for accomodation type: "+acctype);
+		
+		List<HashMap<String, Object>> resultSet = housingModel.getHouseholdsAndPersonsByCountyAndType(cty, acctype);
+		
+		List<ResultsDto> formattedResult = new ArrayList<ResultsDto>();
+		
+		for (HashMap<String, Object> result : resultSet) {
+			Double area = (Double)result.get("area");
+			Integer persons = (Integer)result.get("persons");
+			String countyResource = ""+result.get("countyResource");
+			Integer households = (Integer)result.get("households");
+			List<Coordinate> coordinates = (List<Coordinate>) result.get("coordinates");
+			
+			ResultsDto dto = new ResultsDto();
+			dto.setArea(area);
+			dto.setPersons(persons);
+			dto.setCountyResource(countyResource);
+			dto.setHouseholds(households);
+			dto.setCoordinates(coordinates);
+			
+			formattedResult.add(dto);
+		}
+		ResponseEntity<String> response = jsonUtils.getJsonForResponse(formattedResult);
+		logger.info("Request for getHouseholdsAndPersonsByCountyAndType() processed successfully.");
+		
+		return response;
+	}
+	
 }

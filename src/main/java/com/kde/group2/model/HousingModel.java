@@ -55,7 +55,7 @@ public class HousingModel {
 					List<Coordinate> coordinates = extractCoordinatedFromPolygonResult(
 							solution.getLiteral("geometry").getString());
 					double area = Utils.calculateAreaFromPolygon(coordinates);
-					// resultMap.put("coordinates", coordinates);
+					resultMap.put("coordinates", coordinates);
 					resultMap.put("area", area);
 				} else {
 					resultMap.put(resultName, solution.get(resultName));

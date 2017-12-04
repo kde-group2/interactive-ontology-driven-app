@@ -1,9 +1,12 @@
 package com.kde.group2.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.kde.group2.Coordinate;
 import com.kde.group2.variables.AccommodationType;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
@@ -19,6 +22,8 @@ public class ResultsDto {
 	private String countyResource;
 	
 	private Integer households;
+	
+	private List<Coordinate> coordinates;
 	
 	private AccommodationType accommodationType;
 	
@@ -71,6 +76,14 @@ public class ResultsDto {
 
 	public void setAccommodationType(AccommodationType accommodationType) {
 		this.accommodationType = accommodationType;
+	}
+
+	public List<Coordinate> getCoordinates() {
+		return coordinates;
+	}
+
+	public void setCoordinates(List<Coordinate> coordinates) {
+		this.coordinates = coordinates;
 	}
 	
 }
