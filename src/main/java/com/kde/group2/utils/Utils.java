@@ -2,6 +2,8 @@ package com.kde.group2.utils;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.kde.group2.Coordinate;
 
 public class Utils {
@@ -21,4 +23,10 @@ public class Utils {
 		
 		return area / 2;
     }
+	
+	public static String createErrorResponseMessage(String message) {
+		JsonObject obj = new JsonObject();
+		obj.addProperty("error", message);
+		return new Gson().toJson(obj);
+	}
 }
