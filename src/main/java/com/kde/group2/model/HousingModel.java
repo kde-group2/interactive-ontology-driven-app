@@ -1,25 +1,36 @@
 package com.kde.group2.model;
 
-import com.hp.hpl.jena.query.*;
+import static java.lang.Double.parseDouble;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.kde.group2.Application;
 import com.kde.group2.Coordinate;
 import com.kde.group2.rdf.RDFFile;
 import com.kde.group2.variables.AccommodationType;
 import com.kde.group2.variables.County;
+
 import constants.Constants;
 import constants.Queries;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.*;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static java.lang.Double.parseDouble;
-
+@Component
 public class HousingModel {
 
     static Logger logger = LoggerFactory.getLogger(Application.class);
