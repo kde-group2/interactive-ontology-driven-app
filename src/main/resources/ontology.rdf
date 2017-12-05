@@ -643,7 +643,7 @@
 
     <owl:NamedIndividual rdf:about="http://data.cso.ie/census-2011/classification/CTY/C33">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-        <owl:sameAs rdf:resource="http://data.geohive.ie/resource/county/2AE19629145113A3E055000000000001"/>
+        <owl:sameAs rdf:resource="http://data.geohive.ie/resource/county/2AE19629145213A3E055000000000001"/>
         <rdfs:label xml:lang="en">Donegal</rdfs:label>
         <skos:inScheme rdf:resource="http://data.cso.ie/census-2011/classification/areas/CTY"/>
         <skos:notation>C33</skos:notation>
