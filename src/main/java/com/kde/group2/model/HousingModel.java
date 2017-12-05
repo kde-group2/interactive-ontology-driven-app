@@ -60,9 +60,9 @@ public class HousingModel {
 				} else {
 					resultMap.put(resultName, solution.get(resultName));
 				}
-
-				resultsList.add(resultMap);
 			}
+
+			resultsList.add(resultMap);
 		}
 		
 		//printResults(query, resultsList);
