@@ -2,16 +2,16 @@ package com.kde.group2;
 
 public class Coordinate {
 
-    private double lattitude;
+    private double latitude;
     private double longitude;
 
-    public Coordinate(double lattitude, double longitude) {
-        this.lattitude = lattitude;
+    public Coordinate(double latitude, double longitude) {
+        this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public double getLattitude() {
-        return this.lattitude;
+    public double getLatitude() {
+        return this.latitude;
     }
 
     public double getLongitude() {

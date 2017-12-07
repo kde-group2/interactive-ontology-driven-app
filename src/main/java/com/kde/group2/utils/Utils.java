@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kde.group2.Coordinate;
 
+import static java.lang.Math.abs;
+
 public class Utils {
 	
 	public static double calculateAreaFromPolygon(List<Coordinate> coordinates) {
@@ -15,8 +17,8 @@ public class Utils {
 		for (int i = 0; i < coordinates.size(); i++) {
 			Coordinate currentPoint = coordinates.get(i);
 			Coordinate nextPoint = coordinates.get(j);
-			area += (nextPoint.getLattitude() + currentPoint.getLongitude()) *
-					(nextPoint.getLongitude() - currentPoint.getLongitude());
+			area += (nextPoint.getLatitude() + currentPoint.getLongitude()) *
+					abs(nextPoint.getLongitude() - currentPoint.getLongitude());
 			
 			j = i;
 		}
