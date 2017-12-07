@@ -32,9 +32,9 @@ public class HousingModelController {
 	JsonUtils jsonUtils;
 	
 	@RequestMapping(method = RequestMethod.GET, path= "/household/persons/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getHouseholdsAndPersonsByAccomodationType(@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
+	public ResponseEntity<String> getHouseholdsAndPersonsByAccommodationType(@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
 		
-		logger.info("Request for getHouseholdsAndPersonsByType() received for accomodation type: "+acctype);
+		logger.info("Request for getHouseholdsAndPersonsByType() received for accommodation type: "+acctype);
 		
 		List<HashMap<String, Object>> resultSet = housingModel.getHouseholdsAndPersonsByType(acctype);
 		
@@ -69,7 +69,7 @@ public class HousingModelController {
 	public ResponseEntity<String> getHouseholdsAndPersonsByCountyAndType(@RequestParam(value = "county", required= true) County cty, 
 			@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
 		
-		logger.info("Request for getHouseholdsAndPersonsByCountyAndType() received for accomodation type: "+acctype);
+		logger.info("Request for getHouseholdsAndPersonsByCountyAndType() received for accommodation type: "+acctype);
 		
 		List<HashMap<String, Object>> resultSet = housingModel.getHouseholdsAndPersonsByCountyAndType(cty, acctype);
 		

@@ -104,7 +104,7 @@ public class Queries {
 				"?y <http://data.cso.ie/census-2011/property/households> ?households ." +
 			"}";
 
-	public static String HOUSEHOLDS_GREATHER_THAN_X_BY_TYPE = "SELECT ?countyResource ?county ?households ?geometry WHERE {" +
+	public static String HOUSEHOLDS_GREATER_THAN_X_BY_TYPE = "SELECT ?countyResource ?county ?households ?geometry WHERE {" +
 				"?countyResource <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> ." +
 				"?countyResource <http://www.w3.org/2000/01/rdf-schema#label> ?county ." +
 				"?countyResource <http://www.w3.org/2002/07/owl#sameAs> ?geoHiveCounty ." +
