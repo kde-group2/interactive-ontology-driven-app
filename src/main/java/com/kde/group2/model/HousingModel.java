@@ -149,4 +149,11 @@ public class HousingModel {
 		String queryString = String.format(Queries.HOUSEHOLDS_GREATHER_THAN_X_BY_TYPE, type.getValue(), lowerLimit);
 		return printAndExecuteQuery(queryString);
 	}
+	
+	public List<HashMap<String, Object>> getHouseholdsLesserThanXByType(AccommodationType type, int upperLimit) {
+		String queryString = String.format(Queries.HOUSEHOLDS_LESSER_THAN_X_BY_TYPE, type.getValue(), upperLimit);
+		return printAndExecuteQuery(queryString);
+	}
+	
+	
 }
