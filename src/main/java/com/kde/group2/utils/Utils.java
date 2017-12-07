@@ -15,7 +15,7 @@ public class Utils {
 		for (int i = 0; i < coordinates.size(); i++) {
 			Coordinate currentPoint = coordinates.get(i);
 			Coordinate nextPoint = coordinates.get(j);
-			area += (nextPoint.getLattitude() + currentPoint.getLongitude()) *
+			area += (nextPoint.getLatitude() + currentPoint.getLongitude()) *
 					(nextPoint.getLongitude() - currentPoint.getLongitude());
 			
 			j = i;
