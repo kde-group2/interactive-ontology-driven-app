@@ -65,7 +65,7 @@ public class HousingModel {
 			resultsList.add(resultMap);
 		}
 		
-		printResults(query, resultsList);
+		//printResults(query, resultsList);
 		
 		return resultsList;
 	}
@@ -104,8 +104,6 @@ public class HousingModel {
 		return coordinates;
 	}
 
-	
-	// -----------
 	public List<HashMap<String, Object>> getHouseholdsAndPersonsByType(AccommodationType type) {
 		String queryString = String.format(Queries.HOUSEHOLDS_POPULATION_BY_TYPE, type.getValue());
 		return printAndExecuteQuery(queryString);
@@ -116,29 +114,12 @@ public class HousingModel {
 				type.getValue());
 		return printAndExecuteQuery(queryString);
 	}
-	//-------------
-	
-		
-	//Done
-	//-----------------------
+
 	public List<HashMap<String, Object>> getHouseholdsByCountyAndType(County county, AccommodationType type) {
 		String queryString = String.format(Queries.HOUSEHOLDS_BY_COUNTY_AND_TYPE, county.getValue(), type.getValue());
 		return printAndExecuteQuery(queryString);
 	}
 
-	public List<HashMap<String, Object>> getHouseholdsByCounty(County county) {
-		String queryString = String.format(Queries.HOUSEHOLDS_BY_COUNTY, county.getValue());
-		return printAndExecuteQuery(queryString);
-	}
-
-	public List<HashMap<String, Object>> getHouseholdsByType(AccommodationType type) {
-		String queryString = String.format(Queries.HOUSEHOLDS_BY_TYPE, type.getValue());
-		return printAndExecuteQuery(queryString);
-	}
-	//----------------------
-	
-	
-	// ---------------------
 	public List<HashMap<String, Object>> getPersonsByCountyAndType(County county, AccommodationType type) {
 		String queryString = String.format(Queries.PERSONS_BY_COUNTY_AND_TYPE, county.getValue(), type.getValue());
 		return printAndExecuteQuery(queryString);
@@ -148,15 +129,21 @@ public class HousingModel {
 		String queryString = String.format(Queries.PERSONS_BY_COUNTY, county.getValue());
 		return printAndExecuteQuery(queryString);
 	}
-	
+
+	public List<HashMap<String, Object>> getHouseholdsByCounty(County county) {
+		String queryString = String.format(Queries.HOUSEHOLDS_BY_COUNTY, county.getValue());
+		return printAndExecuteQuery(queryString);
+	}
+
 	public List<HashMap<String, Object>> getPersonsByType(AccommodationType type) {
 		String queryString = String.format(Queries.PERSONS_BY_TYPE, type.getValue());
 		return printAndExecuteQuery(queryString);
 	}
-	//-----------------------
-	
-	
-	
+
+	public List<HashMap<String, Object>> getHouseholdsByType(AccommodationType type) {
+		String queryString = String.format(Queries.HOUSEHOLDS_BY_TYPE, type.getValue());
+		return printAndExecuteQuery(queryString);
+	}
 
 	public List<HashMap<String, Object>> getHouseholdsGreaterThanXByType(AccommodationType type, int lowerLimit) {
 		String queryString = String.format(Queries.HOUSEHOLDS_GREATER_THAN_X_BY_TYPE, type.getValue(), lowerLimit);
