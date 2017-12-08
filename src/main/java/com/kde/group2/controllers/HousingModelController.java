@@ -103,8 +103,9 @@ public class HousingModelController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path= "/household/bycounty/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getHouseholdsByCountyByAccType(@RequestParam(value = "county") County cty, 
-			@RequestParam(value = "acctype") AccommodationType acctype) {
+	public ResponseEntity<String> getHouseholdsByCountyByAccType(@RequestParam(value = "county", required=false) County cty,
+			@RequestParam(value = "acctype", required=false) AccommodationType acctype,
+			@RequestParam(value = "above", required=false) int above) {
 		
 		logger.info("Request for getHouseholdsByCountyAndType() received for accomodation type: "+acctype);
 		
@@ -115,7 +116,11 @@ public class HousingModelController {
 		List<HashMap<String, Object>> resultSet = null;
 				
 		if(acctype != null && cty==null ) {
-			resultSet = housingModel.getHouseholdsByType(acctype);
+			if (above > 0) {
+				resultSet = housingModel.getHouseholdsGreaterThanXByType(acctype, above);
+			} else {
+				resultSet = housingModel.getHouseholdsByType(acctype);
+			}
 		} else if(acctype == null && cty != null ) {
 			resultSet = housingModel.getHouseholdsByCounty(cty);
 		} else {
@@ -161,8 +166,9 @@ public class HousingModelController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET, path= "/persons/bycounty/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getPersonsByCountyByAccType(@RequestParam(value = "county", required= true) County cty, 
-			@RequestParam(value = "acctype", required= true) AccommodationType acctype) {
+	public ResponseEntity<String> getPersonsByCountyByAccType(@RequestParam(value = "county", required=false) County cty,
+			@RequestParam(value = "acctype", required=false) AccommodationType acctype,
+		  	@RequestParam(value = "above", required=false) int above) {
 		
 		logger.info("Request for getPersonsByCountyAndType() received.");
 		
@@ -173,7 +179,11 @@ public class HousingModelController {
 		List<HashMap<String, Object>> resultSet = null;
 				
 		if(acctype != null && cty==null ) {
-			resultSet = housingModel.getPersonsByType(acctype);
+			if (above > 0) {
+				resultSet = housingModel.getPersonsGreaterThanXByType(acctype, above);
+			} else {
+				resultSet = housingModel.getPersonsByType(acctype);
+			}
 		} else if(acctype == null && cty != null ) {
 			resultSet = housingModel.getPersonsByCounty(cty);
 		} else {
