@@ -108,6 +108,27 @@
     <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Example Symmetric, Inverse and Transitive Properties
+    //
+    // Symmetric:
+    //      hasBorderCounty
+    //      livesWithPerson
+    //
+    // Inverse:
+    //      isLocatedWithin
+    //      isNorthOf
+    //
+    // Transitive:
+    //      isLocatedWithin
+    //      livesWithPerson
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+    -->
     
 
 
