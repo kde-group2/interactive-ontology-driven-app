@@ -105,7 +105,7 @@ public class HousingModelController {
 	@RequestMapping(method = RequestMethod.GET, path= "/household/bycounty/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> getHouseholdsByCountyByAccType(@RequestParam(value = "county", required=false) County cty,
 			@RequestParam(value = "acctype", required=false) AccommodationType acctype,
-			@RequestParam(value = "above", required=false) int above) {
+			@RequestParam(value = "above", required=false) Integer above) {
 		
 		logger.info("Request for getHouseholdsByCountyAndType() received for accomodation type: "+acctype);
 		
@@ -116,7 +116,7 @@ public class HousingModelController {
 		List<HashMap<String, Object>> resultSet = null;
 				
 		if(acctype != null && cty==null ) {
-			if (above > 0) {
+			if (above != null) {
 				resultSet = housingModel.getHouseholdsGreaterThanXByType(acctype, above);
 			} else {
 				resultSet = housingModel.getHouseholdsByType(acctype);
@@ -168,7 +168,7 @@ public class HousingModelController {
 	@RequestMapping(method = RequestMethod.GET, path= "/persons/bycounty/byacctype", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> getPersonsByCountyByAccType(@RequestParam(value = "county", required=false) County cty,
 			@RequestParam(value = "acctype", required=false) AccommodationType acctype,
-		  	@RequestParam(value = "above", required=false) int above) {
+		  	@RequestParam(value = "above", required=false) Integer above) {
 		
 		logger.info("Request for getPersonsByCountyAndType() received.");
 		
@@ -179,7 +179,7 @@ public class HousingModelController {
 		List<HashMap<String, Object>> resultSet = null;
 				
 		if(acctype != null && cty==null ) {
-			if (above > 0) {
+			if (above != null) {
 				resultSet = housingModel.getPersonsGreaterThanXByType(acctype, above);
 			} else {
 				resultSet = housingModel.getPersonsByType(acctype);
