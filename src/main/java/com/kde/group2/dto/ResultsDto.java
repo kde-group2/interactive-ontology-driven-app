@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.kde.group2.Coordinate;
-import com.kde.group2.variables.AccommodationType;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 @JsonInclude(Include.NON_NULL)
@@ -23,9 +22,9 @@ public class ResultsDto {
 	
 	private Integer households;
 	
-	private List<Coordinate> coordinates;
+	private String accommodationType;
 	
-	private AccommodationType accommodationType;
+	private List<Coordinate> coordinates;
 	
 	public ResultsDto() {
 	}
@@ -70,11 +69,11 @@ public class ResultsDto {
 		this.households = households;
 	}
 
-	public AccommodationType getAccommodationType() {
+	public String getAccommodationType() {
 		return accommodationType;
 	}
 
-	public void setAccommodationType(AccommodationType accommodationType) {
+	public void setAccommodationType(String accommodationType) {
 		this.accommodationType = accommodationType;
 	}
 
